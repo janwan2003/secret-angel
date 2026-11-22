@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;width:1200px;height:630px;background:#fbf7f0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#221f3d;display:flex;align-items:center;overflow:hidden}
+.l{padding:0 0 0 80px;width:640px}
+.logo{display:flex;align-items:center;gap:16px;font-weight:800;font-size:34px;margin-bottom:34px}
+.logo img{width:64px;height:64px;border-radius:16px}
+h1{font-size:64px;line-height:1.05;margin:0 0 24px;letter-spacing:-.02em;font-weight:850}
+p{font-size:27px;color:#4a4566;margin:0;line-height:1.4}
+.r{flex:1;display:flex;justify-content:center}
+</style></head><body>
+<div class="l"><div class="logo"><img src="../public/icon.svg">Featherpost</div>
+<h1>Secret angels for your group chat</h1>
+<p>Anonymous notes · daily kindness missions · guess your angel · the big reveal</p></div>
+<div class="r"><svg width="440" height="440" viewBox="0 0 440 440" id="ring"></svg></div>
+<script>
+const names=['Ana','Tom','Joy','Ben','Mia','Leo','Sam'];const n=names.length,C=220,R=150;let s='<defs><marker id="a" viewBox="0 0 10 10" refX="17" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9d92e8"/></marker></defs>';
+const P=names.map((_,i)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[C+R*Math.cos(a),C+R*Math.sin(a),a]});
+for(let i=0;i<n;i++){const[x1,y1]=P[i],[x2,y2]=P[(i+1)%n];const mx=(x1+x2)/2,my=(y1+y2)/2;s+=`<path d="M${x1},${y1} Q${C+(mx-C)*1.14},${C+(my-C)*1.14} ${x2},${y2}" fill="none" stroke="#c9c1f4" stroke-width="3" marker-end="url(#a)"/>`}
+P.forEach(([x,y,a],i)=>{s+=`<circle cx="${x}" cy="${y}" r="13" fill="${i==2?'#e3a83a':'#4b3fb5'}"/>`;const lx=C+(R+34)*Math.cos(a),ly=C+(R+34)*Math.sin(a);s+=`<text x="${lx}" y="${ly+8}" font-size="22" font-weight="700" text-anchor="middle" fill="#221f3d">${names[i]}</text>`});
+s+=`<text x="220" y="212" font-size="64" text-anchor="middle">🪶</text><text x="220" y="262" font-size="20" font-weight="700" text-anchor="middle" fill="#8a5a00">who's your angel?</text>`;
+document.getElementById('ring').innerHTML=s;
+</script></body></html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Featherpost · The secret angel game for your group (Monito Monita, Kris Kindle, Angels &amp; Mortals)</title>
+<meta name="description" content="Run a secret angel game in one group link. Everyone secretly looks after someone for a week or a month: anonymous notes, daily kindness missions, guess your angel, then a big reveal. Free, no sign-up, no app.">
+<link rel="canonical" href="https://pb-secret-angel.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Featherpost">
+<meta property="og:title" content="Featherpost · The secret angel game for your group">
+<meta property="og:description" content="Anonymous notes, daily kindness missions, guess your angel, then a big reveal. One link, no sign-up.">
+<meta property="og:url" content="https://pb-secret-angel.pages.dev/">
+<meta property="og:image" content="https://pb-secret-angel.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="google-site-verification" content="g6R95T8-VFARk0PYhc-lkqete3o5OcxzkrFJ0B-vI4E" />
+<meta name="theme-color" content="#4b3fb5">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/app.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Featherpost","url":"https://pb-secret-angel.pages.dev/","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"},"description":"A no-sign-up secret angel game for groups: anonymous notes, kindness missions, guessing and a reveal."}</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/icon.svg" alt="" width="32" height="32">Featherpost</a>
+    <a class="small" href="#how">How it works</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>The secret angel game for your group chat</h1>
+        <p class="lead">Everyone draws someone to look after in secret for a week, for Advent or for a month. Send anonymous notes, do little kindness missions, guess who your own angel is, then unmask the whole circle on reveal day.</p>
+        <div class="badges"><span class="badge">Free</span><span class="badge">No sign-up, no app</span><span class="badge">Works in WhatsApp, Messenger, Viber, Telegram</span></div>
+        <p class="muted small">Also played as Monito Monita, Kris Kindle, Angels &amp; Mortals, Secret Pal, Secret Sister and Secret Cupid.</p>
+        <img class="hero-shot" src="/shot-angel.webp" alt="A player's screen: their secret mortal, today's mission and anonymous notes" width="300" height="600">
+      </div>
+
+      <form class="card" id="createForm" novalidate>
+        <h2>Start a game</h2>
+        <p class="muted small">Takes 30 seconds. You get one link to drop in your group chat.</p>
+        <label for="gName">Game name</label>
+        <input type="text" id="gName" maxlength="60" placeholder="e.g. Office Monito Monita 2026" autocomplete="off">
+        <label for="orgName">Your name</label>
+        <input type="text" id="orgName" maxlength="30" placeholder="How the group knows you" autocomplete="given-name">
+        <label for="revealDate">Reveal day</label>
+        <input type="date" id="revealDate">
+        <p class="hint">The party, the last day of term or Christmas Eve. Angels are unmasked that day.</p>
+        <label>Missions</label>
+        <div class="packs" id="packs">
+          <label class="pack"><input type="radio" name="pack" value="daily" checked><span><b>Daily kindness missions</b><span class="muted small">A new small mission every day: a compliment, a riddle, a treat on their desk.</span></span></label>
+          <label class="pack"><input type="radio" name="pack" value="weekly"><span><b>Weekly themed gifts</b><span class="muted small">Monito-style: something sweet, something soft, something handmade...</span></span></label>
+          <label class="pack"><input type="radio" name="pack" value="none"><span><b>Just notes</b><span class="muted small">No themes. Anonymous notes and guessing only.</span></span></label>
+        </div>
+        <details style="margin-top:12px">
+          <summary class="small" style="cursor:pointer;color:var(--brand);font-weight:650">More options (budget, message)</summary>
+          <label for="budget">Budget per gift <span class="opt">(optional)</span></label>
+          <input type="text" id="budget" maxlength="30" placeholder="e.g. ₱200 a week, €5">
+          <label for="note">Message to the group <span class="opt">(optional)</span></label>
+          <textarea id="note" maxlength="400" placeholder="e.g. Reveal at the Christmas party, 19 Dec, 6pm."></textarea>
+        </details>
+        <p class="err" id="createError" role="alert"></p>
+        <button class="btn block" id="createBtn" type="submit">Create the game</button>
+        <p class="hint center">You'll play too. No email, no password.</p>
+      </form>
+    </section>
+
+    <section class="section" id="how">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Share one link</h3><p class="muted small">Drop it in the group chat. People join with a name and tap a few favourite things.</p></div>
+        <div class="step"><div class="n">2</div><h3>Draw a circle</h3><p class="muted small">When everyone's in, you draw. Each person secretly looks after one other person, all in one big circle.</p></div>
+        <div class="step"><div class="n">3</div><h3>Be someone's angel</h3><p class="muted small">Send anonymous notes, follow the day's mission, and reply to your own angel without knowing who they are.</p></div>
+        <div class="step"><div class="n">4</div><h3>Reveal day</h3><p class="muted small">Log your guess. On the day, unmask the circle one person at a time and see who guessed right.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="shotsSection">
+      <h2>What it looks like</h2>
+      <div class="shots">
+        <figure><img src="/shot-join.webp" alt="Joining a game with a name and favourite things" loading="lazy" width="390" height="780"><figcaption>Join in seconds</figcaption></figure>
+        <figure><img src="/shot-angel.webp" alt="Your secret mortal, today's mission and anonymous notes" loading="lazy" width="390" height="780"><figcaption>Look after your mortal</figcaption></figure>
+        <figure><img src="/shot-reveal.webp" alt="The reveal: the circle of angels and who guessed right" loading="lazy" width="390" height="780"><figcaption>The big reveal</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>One game, many names</h2>
+      <p class="muted">Offices, classes, uni halls, churches and families have played this for years with paper slips and spreadsheets.</p>
+      <div class="names"><span>Monito Monita</span><span>Kris Kindle</span><span>Angels &amp; Mortals</span><span>Secret Pal</span><span>Secret Sister</span><span>Secret Cupid</span><span>Secret Friend</span><span>Kindness Week</span></div>
+    </section>
+
+    <section class="section faq">
+      <h2>Questions</h2>
+      <details><summary>Is it really anonymous?</summary><p>Yes. Your mortal sees your notes as coming from "Your angel". Nobody, including the organiser, sees who has whom until reveal day. The one exception: if a note is reported, the organiser can see who sent it.</p></details>
+      <details><summary>Do people need an account or the app?</summary><p>No. The link opens in any browser, including inside WhatsApp or Messenger. Your place in the game is saved on your phone, and you can copy a personal link to open it on another device.</p></details>
+      <details><summary>How is this different from Secret Santa?</summary><p>Secret Santa is one gift on one day. A secret angel game runs for days or weeks: anonymous notes back and forth, a mission or gift theme each day or week, guessing, and a reveal at the end.</p></details>
+      <details><summary>How many people can play?</summary><p>From 3 to 80 people per game.</p></details>
+      <details><summary>What if someone sends something unkind?</summary><p>Obvious insults are blocked. Any note can be reported with one tap: it disappears for you and the organiser sees it with the sender's name.</p></details>
+      <details><summary>What happens to our data?</summary><p>We keep only the names, favourites and notes the game needs, and delete everything 14 days after the reveal. No tracking, no ads. See the <a href="/privacy">privacy policy</a>.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>About:</b> Featherpost is a free secret angel game for groups.</p>
+    <p><a href="/privacy">Privacy</a> · <a href="https://janwan2003.github.io/secret-angel/">Product page &amp; support</a></p>
+  </footer>
+</div>
+<script type="module" src="/home.js"></script>
+</body>
+</html>

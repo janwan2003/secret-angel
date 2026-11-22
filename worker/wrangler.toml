@@ -1,0 +1,12 @@
+name = "pb-secret-angel-db"
+main = "index.js"
+compatibility_date = "2025-11-01"
+workers_dev = false
+
+[[durable_objects.bindings]]
+name = "ANGEL"
+class_name = "AngelDB"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AngelDB"]
