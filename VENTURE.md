@@ -1,13 +1,13 @@
 ---
 slug: secret-angel
-stage: idea
+stage: launched
 priority: 5
-url:
-repo:
+url: https://pb-secret-angel.pages.dev
+repo: https://github.com/janwan2003/secret-angel
 updated: 2026-11-22
 ---
 
-# secret-angel (working name; weeks-long secret-friend game: anonymous notes and small kindnesses, guess your angel at the end)
+# secret-angel: **Featherpost** (weeks-long secret-friend game: anonymous notes and small kindnesses, guess your angel at the end)
 
 ## Thesis
 
@@ -99,6 +99,12 @@ Searches run 2026-11-22 (search-result summaries, pages not opened).
   The closest to our game, [secretFriend for Slack](https://slack.com/marketplace/A07UG6MG6LU-secretfriend),
   has anonymous messaging and an end-of-game guess, but only for Slack workspaces. No no-login
   version for WhatsApp/Messenger groups was found.
+- **Builder check 2026-11-22 (2 searches, result summaries):** two corrections to the scout's picture. (1) Anonymous
+  messaging to your draw is *not* unique: [Elfster](https://help.elfster.com/knowledge/how-do-i-send-anonymous-messages-and-questions)
+  and [Draw Names - Secret Santa (iOS)](https://apps.apple.com/us/app/-/id1133660909) already have it. Our edge is the
+  multi-week game around it (missions/themes, guessing, a reveal), with no account. (2) Paid demand signal:
+  [Secret Santa app - draw names (iOS)](https://apps.apple.com/us/app/-/id1442673273) lists **"Monito Monita" as a $3.99
+  in-app purchase**, so people pay for a Monito mode. A name search for "Featherpost" found no app with that name.
 - **Gaps:** no search volume checked. No count of how many groups play. Evidence is folklore and
   guides, not usage data.
 
@@ -124,22 +130,70 @@ Searches run 2026-11-22 (search-result summaries, pages not opened).
 
 ## Status
 
-Idea only. Nothing built. Evidence is from search-result summaries.
+**Live: https://pb-secret-angel.pages.dev** (brand **Featherpost**). Product + support + privacy page on GitHub Pages:
+https://janwan2003.github.io/secret-angel/. Built standalone (the scout's recommendation); the operator can still decide
+to cross-link it from Hatdraw (secret-santa-draw).
+
+What exists (2026-11-22):
+- Create (name, reveal day, missions: daily kindness / weekly gift themes / just notes, optional budget + message) → one
+  group link (copy, WhatsApp, native share). Presets `/?next=cupid|advent|week` prefill the next occasion.
+- Join with a name + optional favourites card (drink, treats, colour, a snack, a hobby, "please avoid"). Duplicate names
+  refused. Organiser can remove people before the draw. 3–80 players.
+- Draw = one single cycle through everyone (in-page confirm). Each player sees only their mortal + card.
+- Anonymous notes both ways in two tabs ("To <mortal>" / "From my angel"), day-N mission or week-N theme card, guess
+  dropdown (changeable), group counts (notes today/total, how many have a guess). Kindness word filter (EN + a few
+  Tagalog insults), Report → note hidden for the reporter, organiser sees it with the sender's name. 40 notes/person/day.
+- Reveal (organiser): step-by-step unmasking starting from the organiser, "guessed it ✓", SVG circle diagram, awards,
+  "who had whom", copy results, your own result, "Run one for another group" (Secret Cupid preset in Nov–Jan).
+- Live link preview (`functions/g/[id].js`): "N people have joined · reveal 19 Dec" → "4 angels · 3 notes sent · 2 think
+  they know their angel · reveal 19 Dec" → "angels revealed". Static og.png.
+- Personal link `#k=<token>` (stripped from the URL after load) for another device. Polls every 15 s while visible
+  (paused while typing).
+- Privacy: no accounts, no email, no analytics; tokens hashed; data deleted 14 days after reveal or 120 days after
+  creation; per-IP rate limits. 13+ stated in the privacy policy.
+- Stack: Pages + Functions; storage is one SQLite-backed Durable Object in Worker `pb-secret-angel-db` because the
+  account is at the free plan's 10 D1 databases (`wrangler d1 create` refused on 2026-11-22).
+- Search Console: site verified (META), added, sitemap submitted 2026-11-22 (`scripts/gsc.py`).
+
+Verified 2026-11-22 (how):
+- `npm run test:unit`: 6/6 pass (ring is a single cycle with no self-match for n=3..80 ×20, <3 refused, uniformity,
+  theme schedule, kindness filter incl. "Scunthorpe" false-positive check, worker schema = schema.sql).
+- `tests/e2e/run.mjs` in real Chromium (Playwright, 9 browser contexts, phone 390 px and desktop 1280 px) **passes on
+  local `wrangler pages dev` and on production** (Pages deploys e8071f24 and d7a12bcf, worker version 472d5ab6; last prod run on d7a12bcf). It covers validation,
+  create, copy link, OG text at each stage, 3 joins + a duplicate name + remove, draw cancel/confirm, single circle, notes
+  both ways with the angel's name never shown to the mortal, unkind note refused, report → hidden + organiser sees sender,
+  guesses, personal link on a new device, reveal stepper, circle, desktop reveal, notes closed after reveal (403),
+  "start your own" prefill, missing game, 404, privacy 200, delete → 404, no horizontal overflow, zero console errors and
+  no native dialogs. The test deletes its own game.
+- Screenshots checked by eye: phone landing, phone angel view, phone reveal circle, desktop landing, OG image.
+- Not covered: real iOS Safari / Android / WhatsApp in-app browsers (Chromium only); load beyond a few users; the
+  weekly pack after week 1 (unit-tested only); preview rendering in real chat apps.
 
 ## Next steps
 
-1. Decide the boundary with secret-santa-draw (operator, via OPERATOR-INBOX).
-2. Build: create → join + favourites card → draw (derangement with exclusions) → anonymous
-   notes both ways → theme packs (Monito weekly, Advent daily, plain) → guess log → reveal
-   (ring + unmasking). Target live by ~2026-12-01.
-3. OG preview with live counts ("18 angels · 41 notes sent · reveal 19 Dec").
+1. Get the first real games before 1 Dec (Monito/Kris Kindle season starts): operator ask in OPERATOR-INBOX (start one in
+   a real office/family chat; check the WhatsApp preview and in-app browser).
+2. Quality session: real-phone checks (iOS Safari, WhatsApp/Messenger in-app browsers), dynamic per-game OG image with
+   live counts, "best note" vote on reveal day, TV mode for the reveal (big type, auto-advance).
+3. Launch texts (`store/launch-posts.md`): AlternativeTo listing, a short post only in communities that allow
+   self-promotion, Tagalog copy of the landing page (Monito Monita is the biggest audience).
+4. Cross-link from Hatdraw's post-draw screen ("Want weeks of notes and a reveal? Try Featherpost") if the operator agrees.
+5. Weekly metrics from the Durable Object (counts only) + Search Console.
 
 ## Monetization plan
 
 None now (rule 4). Later: optional organiser "event pack" (custom branding for offices and
 schools) once the operator can take money. No ads.
 
+## Metrics
+
+- 2026-11-22: launched today; 0 real games (the e2e test's games were deleted). Search Console: verified, no data yet.
+
 ## Log
 
 - 2026-11-22 scout: created from a scouting session (15 candidates, 5 kept). Evidence from 4 web
   searches (search-result summaries, pages not opened). Not built.
+- 2026-11-22 builder: evidence check (2 searches: Elfster/DrawNames already do anonymous messages; an iOS app sells a
+  Monito Monita mode for $3.99). Designed and built **Featherpost** (Pages + Functions + SQLite Durable Object, since
+  D1 is full), deployed to https://pb-secret-angel.pages.dev, repo + GitHub Pages product page, Search Console verified +
+  sitemap. Unit 6/6; Playwright e2e passes locally and twice on production (deploys e8071f24, d7a12bcf); link check: all hrefs/srcs on landing, privacy and GitHub Pages return 200. Stage → launched.
